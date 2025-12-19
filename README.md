@@ -1,18 +1,28 @@
 # LsiSoftwareTask
 
-Minimalny szkielet Symfony (Twig + Doctrine) w kontenerach Docker: PHP 8.3, MySQL 8, Nginx.
+Minimalny szkielet Symfony 7.4 (Twig + Doctrine) w kontenerach Docker: PHP 8.3, MySQL 8, Nginx.
 
 ## Wymagania
 
 - Docker + Docker Compose
+
+## Stack
+
+- Symfony 7.4 (Twig, Doctrine)
+- PHP 8.3 (FPM)
+- MySQL 8
+- Nginx
 
 ## Pierwsze uruchomienie
 
 1) Skopiuj plik z konfiguracja bazy:
 
 ```bash
-cp .env.example .env.local
+make copy-env
 ```
+
+Przy pierwszym uruchomieniu kontenera PHP plik `app/.env` zostanie utworzony z `app/.env.example`
+i automatycznie dostanie losowy `APP_SECRET`.
 
 2) Uruchom kontenery:
 
@@ -32,13 +42,13 @@ make migrate
 make seed
 ```
 
-Aby odswiezyc dane:
+5) Aby odswiezyc dane:
 
 ```bash
 make seed-reset
 ```
 
-5) Otworz aplikacje:
+6) Otworz aplikacje:
 
 - http://localhost:8080
 

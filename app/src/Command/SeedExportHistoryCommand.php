@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LsiSoftwareTask\Command;
 
+use DateMalformedStringException;
 use DateTimeImmutable;
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,12 +25,16 @@ final class SeedExportHistoryCommand extends Command
     {
         $this
             ->setDescription('Loads sample export history records.')
-            ->addOption('truncate', null, InputOption::VALUE_NONE, 'Delete existing rows before seeding');
+            ->addOption(
+                'truncate',
+                null,
+                InputOption::VALUE_NONE,
+                'Delete existing rows before seeding'
+            );
     }
 
     /**
-     * @throws \DateMalformedStringException
-     * @throws Exception
+     * @throws Exception|DateMalformedStringException
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -45,11 +50,11 @@ final class SeedExportHistoryCommand extends Command
         }
 
         $rows = [
-            ['inventory_01', '2024-12-10 08:15:00', 'system', 'Tychy'],
-            ['orders_02', '2024-12-12 14:05:00', 'admin', 'Katowice'],
-            ['clients_03', '2024-12-14 09:30:00', 'reporter', 'Łódź'],
-            ['returns_04', '2024-12-15 16:45:00', 'system', 'Warszawa'],
-            ['inventory_05', '2024-12-18 07:20:00', 'admin', 'Kraków'],
+            ['inventory', '2024-12-10 08:15:00', 'system', 'Tychy'],
+            ['orders', '2024-12-12 14:05:00', 'admin', 'Katowice'],
+            ['clients', '2024-12-14 09:30:00', 'reporter', 'Łódź'],
+            ['returns', '2024-12-15 16:45:00', 'system', 'Warszawa'],
+            ['payments', '2024-12-18 07:20:00', 'analyst', 'Kraków'],
         ];
 
         foreach ($rows as [$name, $exportedAt, $user, $location]) {

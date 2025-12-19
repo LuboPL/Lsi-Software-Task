@@ -1,6 +1,7 @@
 LsiSoftwareTask\Entity\ExportHistory:
   type: entity
   table: export_history
+  repositoryClass: LsiSoftwareTask\Repository\ExportHistoryRepository
   id:
     id:
       type: bigint

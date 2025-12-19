@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Raport{% endblock %}
+
+{% block body %}
+  <main class="page">
+    <div class="container">
+      <div class="header">
+        <h1 class="title">Historia eksportów</h1>
+        <p class="subtitle">Szybko przefiltruj dane po lokalu i zakresie dat.</p>
+      </div>
+
+      <section class="card">
+        {{ form_start(form) }}
+          <div class="filters">
+            {{ form_row(form.location, { label: 'Lokal', placeholder: 'Wszystkie' }) }}
+            {{ form_row(form.dateFrom, { label: 'Data od', attr: { lang: 'en-CA', placeholder: 'Data od' } }) }}
+            {{ form_row(form.dateTo, { label: 'Data do', attr: { lang: 'en-CA', placeholder: 'Data do' } }) }}
+          </div>
+          <div class="actions">
+            {{ form_widget(form.submit, { label: 'Zatwierdź', attr: { class: 'button' } }) }}
+            <a class="link" href="{{ path('home') }}">Reset</a>
+          </div>
+        {{ form_end(form) }}
+      </section>
+
+      <section class="card table-card">
+        {% if records is empty %}
+          <p class="empty">Brak wyników dla wybranych filtrów.</p>
+        {% else %}
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nazwa</th>
+                  <th>Data</th>
+                  <th>Godzina</th>
+                  <th>Użytkownik</th>
+                  <th>Lokal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in records %}
+                  <tr>
+                    <td>{{ row.exportName }}</td>
+                    <td>{{ row.exportedAt|date('Y-m-d') }}</td>
+                    <td>{{ row.exportedAt|date('H:i:s') }}</td>
+                    <td>{{ row.exportedByUsername }}</td>
+                    <td>{{ row.locationName }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
+      </section>
+    </div>
+  </main>
+{% endblock %}
