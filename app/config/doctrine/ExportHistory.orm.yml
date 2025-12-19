@@ -1,0 +1,31 @@
+LsiSoftwareTask\Entity\ExportHistory:
+  type: entity
+  table: export_history
+  id:
+    id:
+      type: bigint
+      options:
+        unsigned: true
+      generator:
+        strategy: AUTO
+  fields:
+    exportName:
+      type: string
+      length: 255
+      column: export_name
+    exportedAt:
+      type: datetime_immutable
+      column: exported_at
+    exportedByUsername:
+      type: string
+      length: 255
+      column: exported_by_username
+    locationName:
+      type: string
+      length: 255
+      column: location_name
+  indexes:
+    idx_loc_date:
+      columns: [location_name, exported_at]
+    idx_date:
+      columns: [exported_at]
