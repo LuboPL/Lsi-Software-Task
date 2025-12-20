@@ -1,9 +1,6 @@
 SHELL := /bin/sh
 
-.PHONY: copy-env up down reset wait-db migrate seed init
-
-copy-env:
-	@sh scripts/copy-env.sh
+.PHONY: up down reset wait-db migrate seed init
 
 up:
 	docker compose up -d --build
