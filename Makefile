@@ -1,6 +1,6 @@
 SHELL := /bin/sh
 
-.PHONY: copy-env up down reset wait-db migrate seed seed-reset
+.PHONY: copy-env up down reset wait-db migrate seed init
 
 copy-env:
 	@sh scripts/copy-env.sh
@@ -23,5 +23,4 @@ migrate: wait-db
 seed: wait-db
 	docker compose exec -T php bin/console app:seed-export-history
 
-seed-reset: wait-db
-	docker compose exec -T php bin/console app:seed-export-history --truncate
+init: migrate seed

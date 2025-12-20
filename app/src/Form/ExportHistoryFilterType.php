@@ -25,7 +25,7 @@ final class ExportHistoryFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $locations = $this->repository->getDistinctLocations();
-        $locationChoices = $locations === [] ? [] : array_combine($locations, $locations);
+        $locationChoices = array_fill_keys($locations, $locations);
 
         $builder
             ->add('location', ChoiceType::class, [

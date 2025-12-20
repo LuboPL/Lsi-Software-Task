@@ -15,7 +15,7 @@ Minimalny szkielet Symfony 7.4 (Twig + Doctrine) w kontenerach Docker: PHP 8.3, 
 
 ## Pierwsze uruchomienie
 
-1) Skopiuj plik z konfiguracja bazy:
+1) Skopiuj plik z konfiguracją bazy:
 
 ```bash
 make copy-env
@@ -30,30 +30,29 @@ i automatycznie dostanie losowy `APP_SECRET`.
 make up
 ```
 
-3) Uruchom migracje:
+3) Uruchom migracje i seed:
 
 ```bash
-make migrate
+make init
 ```
 
-4) Zaladuj przykladowe dane (seed):
-
-```bash
-make seed
-```
-
-5) Aby odswiezyc dane:
-
-```bash
-make seed-reset
-```
-
-6) Otworz aplikacje:
+4) Otwórz aplikację:
 
 - http://localhost:8080
 
+## Makefile
+
+- `make copy-env` - tworzy `.env.local` z `.env.example`, jeśli jeszcze nie istnieje
+- `make up` - uruchamia kontenery
+- `make down` - zatrzymuje kontenery
+- `make reset` - zatrzymuje kontenery i usuwa wolumeny oraz lokalne obrazy
+- `make migrate` - uruchamia migracje
+- `make seed` - ładuje przykładowe dane
+- `make init` - migracje + seed
+- `make wait-db` - wewnętrzny target oczekujący na gotową bazę
+
 ## Konfiguracja bazy
 
-Domyslne ustawienia w `docker-compose.yml` pochodza z `.env.local` w root.
+Domyślne ustawienia w `docker-compose.yml` pochodzą z `.env.local` w root.
 Symfony korzysta z `DATABASE_URL` w `app/.env`.
-Jesli zmienisz dane w `.env.local`, zaktualizuj tez `app/.env` lub dodaj `app/.env.local`.
+Jeśli zmienisz dane w `.env.local`, zaktualizuj też `app/.env` lub dodaj `app/.env.local`.

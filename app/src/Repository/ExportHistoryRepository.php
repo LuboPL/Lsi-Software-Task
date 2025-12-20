@@ -33,12 +33,12 @@ final class ExportHistoryRepository extends ServiceEntityRepository implements E
                 ->setParameter('locationName', $locationName);
         }
 
-        if ($exportedFrom instanceof DateTimeImmutable) {
+        if ($exportedFrom) {
             $qb->andWhere('e.exportedAt >= :exportedFrom')
-                ->setParameter('exportedFrom', $exportedFrom->setTime(0, 0, 0));
+                ->setParameter('exportedFrom', $exportedFrom->setTime(0, 0));
         }
 
-        if ($exportedTo instanceof DateTimeImmutable) {
+        if ($exportedTo) {
             $qb->andWhere('e.exportedAt <= :exportedTo')
                 ->setParameter('exportedTo', $exportedTo->setTime(23, 59, 59));
         }
