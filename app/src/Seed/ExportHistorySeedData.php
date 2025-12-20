@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LsiSoftwareTask\Seed;
 
-final readonly class ExportHistorySeedData
+final class ExportHistorySeedData
 {
     /**
      * @var array<int, array{string, string, string, string}>

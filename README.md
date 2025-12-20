@@ -22,7 +22,7 @@ make copy-env
 ```
 
 Przy pierwszym uruchomieniu kontenera PHP plik `app/.env` zostanie utworzony z `app/.env.example`
-i automatycznie dostanie losowy `APP_SECRET`.
+i zachowa domyślny `APP_SECRET` z przykładu.
 
 2) Uruchom kontenery:
 
@@ -38,7 +38,7 @@ make init
 
 4) Otwórz aplikację:
 
-- http://localhost:8080
+- http://localhost:8080/report/export_history
 
 ## Makefile
 

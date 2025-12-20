@@ -1,0 +1,6 @@
+LsiSoftwareTask\Dto\ExportHistoryFilter:
+    properties:
+        dateFrom:
+            - LessThanOrEqual:
+                  propertyPath: dateTo
+                  message: 'Data od nie może być późniejsza niż data do.'

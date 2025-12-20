@@ -18,8 +18,8 @@
             {{ form_row(form.dateTo, { label: 'Data do', attr: { lang: 'en-CA', placeholder: 'Data do' } }) }}
           </div>
           <div class="actions">
-            {{ form_widget(form.submit, { label: 'Zatwierdź', attr: { class: 'button' } }) }}
-            <a class="link" href="{{ path('home') }}">Reset</a>
+            <button class="button" type="submit">Zatwierdź</button>
+            <a class="link" href="{{ path('export_history') }}">Reset</a>
           </div>
         {{ form_end(form) }}
       </section>

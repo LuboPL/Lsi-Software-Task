@@ -6,12 +6,9 @@ namespace LsiSoftwareTask\Dto;
 
 use DateTimeImmutable;
 
-final readonly class ExportHistoryFilter
+final class ExportHistoryFilter
 {
-    public function __construct(
-        public ?string $location = null,
-        public ?DateTimeImmutable $dateFrom = null,
-        public ?DateTimeImmutable $dateTo = null
-    ) {
-    }
+    public ?string $location = null;
+    public ?DateTimeImmutable $dateFrom = null;
+    public ?DateTimeImmutable $dateTo = null;
 }
