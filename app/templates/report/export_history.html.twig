@@ -1,59 +1,52 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'report/fields.html.twig' %}
 
 {% block title %}Raport{% endblock %}
 
 {% block body %}
   <main class="page">
     <div class="container">
-      <div class="header">
-        <h1 class="title">Historia eksportów</h1>
-        <p class="subtitle">Szybko przefiltruj dane po lokalu i zakresie dat.</p>
-      </div>
+      <h1 class="title">Historia eksportów</h1>
+      {{ form_start(form, { attr: { class: 'card' } }) }}
+        <div class="filters">
+          {{ form_row(form.locationName, { label: 'Lokal', placeholder: 'Wszystkie' }) }}
+          {{ form_row(form.dateFrom, { label: 'Data od', attr: { lang: 'en-CA', placeholder: 'Data od' } }) }}
+          {{ form_row(form.dateTo, { label: 'Data do', attr: { lang: 'en-CA', placeholder: 'Data do' } }) }}
+        </div>
+        <div class="actions">
+          <button class="button" type="submit">Zatwierdź</button>
+          <a class="link" href="{{ path('export_history') }}">Reset</a>
+        </div>
+      {{ form_end(form) }}
 
-      <section class="card">
-        {{ form_start(form) }}
-          <div class="filters">
-            {{ form_row(form.locationName, { label: 'Lokal', placeholder: 'Wszystkie' }) }}
-            {{ form_row(form.dateFrom, { label: 'Data od', attr: { lang: 'en-CA', placeholder: 'Data od' } }) }}
-            {{ form_row(form.dateTo, { label: 'Data do', attr: { lang: 'en-CA', placeholder: 'Data do' } }) }}
-          </div>
-          <div class="actions">
-            <button class="button" type="submit">Zatwierdź</button>
-            <a class="link" href="{{ path('export_history') }}">Reset</a>
-          </div>
-        {{ form_end(form) }}
-      </section>
-
-      <section class="card table-card">
+      <div class="card">
         {% if records is empty %}
           <p class="empty">Brak wyników dla wybranych filtrów.</p>
         {% else %}
-          <div class="table-wrap">
-            <table>
-              <thead>
+          <table>
+            <thead>
+              <tr>
+                <th>Nazwa</th>
+                <th>Data</th>
+                <th>Godzina</th>
+                <th>Użytkownik</th>
+                <th>Lokal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in records %}
                 <tr>
-                  <th>Nazwa</th>
-                  <th>Data</th>
-                  <th>Godzina</th>
-                  <th>Użytkownik</th>
-                  <th>Lokal</th>
+                  <td>{{ row.exportName }}</td>
+                  <td>{{ row.exportedAt|date('Y-m-d') }}</td>
+                  <td>{{ row.exportedAt|date('H:i:s') }}</td>
+                  <td>{{ row.exportedByUsername }}</td>
+                  <td>{{ row.locationName }}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {% for row in records %}
-                  <tr>
-                    <td>{{ row.exportName }}</td>
-                    <td>{{ row.exportedAt|date('Y-m-d') }}</td>
-                    <td>{{ row.exportedAt|date('H:i:s') }}</td>
-                    <td>{{ row.exportedByUsername }}</td>
-                    <td>{{ row.locationName }}</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
+              {% endfor %}
+            </tbody>
+          </table>
         {% endif %}
-      </section>
+      </div>
     </div>
   </main>
 {% endblock %}

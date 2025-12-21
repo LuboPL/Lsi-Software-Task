@@ -19,5 +19,9 @@ services:
     LsiSoftwareTask\:
         resource: '../src/'
 
+    LsiSoftwareTask\Report\ExportHistory\Repository\ExportHistoryReadRepositoryInterface: '@LsiSoftwareTask\Report\ExportHistory\Repository\ExportHistoryReadRepository'
+    LsiSoftwareTask\Report\ExportHistory\Provider\LocationProviderInterface: '@LsiSoftwareTask\Report\ExportHistory\Provider\LocationProvider'
+    LsiSoftwareTask\Report\ExportHistory\Query\ExportHistoryReportQueryInterface: '@LsiSoftwareTask\Report\ExportHistory\Query\ExportHistoryReportQuery'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

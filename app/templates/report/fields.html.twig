@@ -1,0 +1,16 @@
+{% block form_row %}
+  {% set row_class = (row_attr.class|default('') ~ ' form-row')|trim %}
+  {% set invalid_class = (form.vars.errors|length > 0) ? ' is-invalid' : '' %}
+  {% set widget_attr = attr|merge({class: (attr.class|default('') ~ invalid_class)|trim}) %}
+  <div class="{{ row_class }}">
+    {{ form_label(form) }}
+    {{ form_widget(form, { attr: widget_attr }) }}
+    {{ form_errors(form) }}
+  </div>
+{% endblock %}
+
+{% block form_errors %}
+  {% if errors|length > 0 %}
+    <div class="form-error" role="alert">{{ errors|first.message }}</div>
+  {% endif %}
+{% endblock %}

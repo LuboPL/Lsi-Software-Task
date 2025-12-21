@@ -21,7 +21,6 @@ final class ExportHistoryController extends AbstractController
     public function index(Request $request): Response
     {
         $filter = new ExportHistoryFilterDTO();
-
         $form = $this->createForm(ExportHistoryFilterType::class, $filter);
         $form->handleRequest($request);
 
