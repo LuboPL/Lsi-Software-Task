@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace LsiSoftwareTask\Repository;
+namespace LsiSoftwareTask\Report\ExportHistory\Repository;
 
-use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use LsiSoftwareTask\Entity\ExportHistory;
+use LsiSoftwareTask\Report\ExportHistory\Criteria\ExportHistoryCriteria;
+use LsiSoftwareTask\Report\ExportHistory\Entity\ExportHistory;
 
-final class ExportHistoryRepository extends ServiceEntityRepository implements ExportHistoryRepositoryInterface
+final class ExportHistoryReadRepository extends ServiceEntityRepository implements ExportHistoryReadRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -19,28 +19,28 @@ final class ExportHistoryRepository extends ServiceEntityRepository implements E
     /**
      * @return ExportHistory[]
      */
-    public function findByLocalAndDateRange(
-        ?string $locationName,
-        ?DateTimeImmutable $exportedFrom,
-        ?DateTimeImmutable $exportedTo
-    ): array {
+    public function findByCriteria(ExportHistoryCriteria $criteria): array
+    {
+        $locationName = $criteria->locationName;
+        $exportFrom = $criteria->exportFrom;
+        $exportTo = $criteria->exportTo;
+
         $qb = $this->createQueryBuilder('e')
             ->orderBy('e.exportedAt', 'DESC');
 
-        $locationName = trim(($locationName ?? ''));
-        if ($locationName !== '') {
+        if ($locationName) {
             $qb->andWhere('e.locationName = :locationName')
                 ->setParameter('locationName', $locationName);
         }
 
-        if ($exportedFrom) {
+        if ($exportFrom !== null) {
             $qb->andWhere('e.exportedAt >= :exportedFrom')
-                ->setParameter('exportedFrom', $exportedFrom->setTime(0, 0));
+                ->setParameter('exportedFrom', $exportFrom);
         }
 
-        if ($exportedTo) {
+        if ($exportTo !== null) {
             $qb->andWhere('e.exportedAt <= :exportedTo')
-                ->setParameter('exportedTo', $exportedTo->setTime(23, 59, 59));
+                ->setParameter('exportedTo', $exportTo);
         }
 
         return $qb->getQuery()->getResult();

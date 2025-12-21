@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LsiSoftwareTask\Entity;
+namespace LsiSoftwareTask\Report\ExportHistory\Entity;
 
 use DateTimeImmutable;
 

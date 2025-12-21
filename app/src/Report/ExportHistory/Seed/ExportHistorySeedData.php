@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LsiSoftwareTask\Seed;
+namespace LsiSoftwareTask\Report\ExportHistory\Seed;
 
 final class ExportHistorySeedData
 {

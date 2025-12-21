@@ -1,2 +1,2 @@
 report:
-    resource: routes/report.yaml
+    resource: routes/export_history.yaml

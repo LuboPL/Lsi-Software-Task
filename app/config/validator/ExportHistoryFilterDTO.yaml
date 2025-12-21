@@ -1,0 +1,3 @@
+LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryFilterDTO:
+    constraints:
+        - LsiSoftwareTask\Report\ExportHistory\Validator\Constraints\ExportHistoryDateRange: ~

@@ -1,7 +1,7 @@
-LsiSoftwareTask\Entity\ExportHistory:
+LsiSoftwareTask\Report\ExportHistory\Entity\ExportHistory:
   type: entity
   table: export_history
-  repositoryClass: LsiSoftwareTask\Repository\ExportHistoryRepository
+  repositoryClass: LsiSoftwareTask\Report\ExportHistory\Repository\ExportHistoryReadRepository
   id:
     id:
       type: bigint

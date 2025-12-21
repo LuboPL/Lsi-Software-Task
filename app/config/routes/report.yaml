@@ -1,4 +1,0 @@
-export_history:
-    path: /report/export_history
-    controller: LsiSoftwareTask\Controller\ReportController::index
-    methods: [GET]
