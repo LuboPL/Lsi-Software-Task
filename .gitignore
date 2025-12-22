@@ -11,3 +11,5 @@ app/.env.*
 app/var/
 app/vendor/
 app/.phpunit.result.cache
+app/phpunit.xml
+app/.phpunit.cache/

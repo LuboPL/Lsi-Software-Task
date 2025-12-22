@@ -8,7 +8,7 @@ fi
 dots='...'
 i=0
 
-printf 'MySQL '
+printf 'MySQL'
 until docker compose exec -T mysql sh -c 'mysqladmin ping -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -h 127.0.0.1 --silent >/dev/null 2>&1'; do
   i=$(( (i + 1) % 4 ))
   printf '\rMySQL %.*s   ' "$i" "$dots"

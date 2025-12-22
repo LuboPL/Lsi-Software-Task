@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace LsiSoftwareTask\Report\ExportHistory\Validator\Constraints;
 
 use LogicException;
-use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryFilter;
+use LsiSoftwareTask\Report\ExportHistory\Criteria\ExportHistoryCriteria;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -21,19 +21,19 @@ final class ExportHistoryDateRangeValidator extends ConstraintValidator
             throw new LogicException('Invalid constraint type.');
         }
 
-        if (false === $value instanceof ExportHistoryFilter) {
+        if (false === $value instanceof ExportHistoryCriteria) {
             throw new LogicException('Invalid value type.');
         }
 
-        $from = $value->dateFrom;
-        $to = $value->dateTo;
+        $from = $value->exportFrom;
+        $to = $value->exportTo;
 
         if (!$from || !$to || $from <= $to) {
             return;
         }
 
         $this->context->buildViolation($constraint->message)
-            ->atPath('dateFrom')
+            ->atPath('exportFrom')
             ->addViolation();
     }
 }

@@ -10,8 +10,8 @@
       {{ form_start(form, { attr: { class: 'card' } }) }}
         <div class="filters">
           {{ form_row(form.locationName, { label: 'Lokal', placeholder: '- Wszystkie -' }) }}
-          {{ form_row(form.dateFrom, { label: 'Data od', attr: { lang: 'en-CA' } }) }}
-          {{ form_row(form.dateTo, { label: 'Data do', attr: { lang: 'en-CA' } }) }}
+          {{ form_row(form.exportFrom, { label: 'Data od', attr: { lang: 'en-CA' } }) }}
+          {{ form_row(form.exportTo, { label: 'Data do', attr: { lang: 'en-CA' } }) }}
         </div>
         <div class="actions">
           <button class="button" type="submit">Zatwierdź</button>

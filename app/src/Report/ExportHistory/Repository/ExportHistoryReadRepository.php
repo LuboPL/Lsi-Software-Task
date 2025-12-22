@@ -6,7 +6,7 @@ namespace LsiSoftwareTask\Report\ExportHistory\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryCriteria;
+use LsiSoftwareTask\Report\ExportHistory\Criteria\ExportHistoryCriteria;
 use LsiSoftwareTask\Report\ExportHistory\Entity\ExportHistory;
 
 /**

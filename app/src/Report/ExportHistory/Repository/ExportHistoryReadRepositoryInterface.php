@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LsiSoftwareTask\Report\ExportHistory\Repository;
 
-use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryCriteria;
+use LsiSoftwareTask\Report\ExportHistory\Criteria\ExportHistoryCriteria;
 use LsiSoftwareTask\Report\ExportHistory\Entity\ExportHistory;
 
 interface ExportHistoryReadRepositoryInterface

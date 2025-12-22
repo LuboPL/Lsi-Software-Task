@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace LsiSoftwareTask\Report\ExportHistory\Controller;
 
-use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryFilter;
 use LsiSoftwareTask\Report\ExportHistory\Form\ExportHistoryFilterType;
+use LsiSoftwareTask\Report\ExportHistory\Criteria\ExportHistoryCriteria;
 use LsiSoftwareTask\Report\ExportHistory\Query\ExportHistoryReportQueryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,12 +20,14 @@ final class ExportHistoryController extends AbstractController
 
     public function index(Request $request): Response
     {
-        $filter = new ExportHistoryFilter();
-        $form = $this->createForm(ExportHistoryFilterType::class, $filter);
+        $form = $this->createForm(ExportHistoryFilterType::class);
         $form->handleRequest($request);
 
+        /** @var ExportHistoryCriteria $criteria */
+        $criteria = $form->getData();
+
         if (!$form->isSubmitted() || $form->isValid()) {
-            $records = $this->exportHistoryReportQuery->fetch($filter);
+            $records = $this->exportHistoryReportQuery->fetch($criteria);
         }
 
         return $this->render('report/export_history.html.twig', [
