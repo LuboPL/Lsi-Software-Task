@@ -6,7 +6,7 @@ namespace LsiSoftwareTask\Report\ExportHistory\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use LsiSoftwareTask\Report\ExportHistory\Criteria\ExportHistoryCriteria;
+use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryCriteria;
 use LsiSoftwareTask\Report\ExportHistory\Entity\ExportHistory;
 
 final class ExportHistoryReadRepository extends ServiceEntityRepository implements ExportHistoryReadRepositoryInterface
@@ -16,9 +16,6 @@ final class ExportHistoryReadRepository extends ServiceEntityRepository implemen
         parent::__construct($registry, ExportHistory::class);
     }
 
-    /**
-     * @return ExportHistory[]
-     */
     public function findByCriteria(ExportHistoryCriteria $criteria): array
     {
         $locationName = $criteria->locationName;
@@ -46,9 +43,6 @@ final class ExportHistoryReadRepository extends ServiceEntityRepository implemen
         return $qb->getQuery()->getResult();
     }
 
-    /**
-     * @return string[]
-     */
     public function getDistinctLocations(): array
     {
         $rows = $this->createQueryBuilder('e')

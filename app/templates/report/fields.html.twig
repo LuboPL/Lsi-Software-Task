@@ -3,7 +3,7 @@
   {% set invalid_class = (form.vars.errors|length > 0) ? ' is-invalid' : '' %}
   {% set widget_attr = attr|merge({class: (attr.class|default('') ~ invalid_class)|trim}) %}
   <div class="{{ row_class }}">
-    {{ form_label(form) }}
+    {{ form_label(form, label|default(null), { label_attr: label_attr|default({}) }) }}
     {{ form_widget(form, { attr: widget_attr }) }}
     {{ form_errors(form) }}
   </div>

@@ -1,2 +1,4 @@
-report:
-    resource: routes/export_history.yaml
+export_history:
+    path: /report/export_history
+    controller: LsiSoftwareTask\Report\ExportHistory\Controller\ExportHistoryController::index
+    methods: [GET]

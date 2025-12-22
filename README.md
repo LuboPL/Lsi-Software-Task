@@ -1,7 +1,4 @@
-# LsiSoftwareTask
-
-Minimalny szkielet Symfony 7.4 (Twig + Doctrine) w kontenerach Docker: PHP 8.3, MySQL 8, Nginx.
-
+# Aplikacja do generowania historii raportów
 ## Wymagania
 
 - Docker + Docker Compose

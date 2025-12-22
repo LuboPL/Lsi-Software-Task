@@ -8,7 +8,6 @@ use DateTimeImmutable;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 use LsiSoftwareTask\Report\ExportHistory\Entity\ExportHistory;
-use LsiSoftwareTask\Report\ExportHistory\Seed\ExportHistorySeedData;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -46,7 +45,7 @@ final class SeedExportHistoryCommand extends Command
                 return Command::SUCCESS;
             }
 
-            foreach (ExportHistorySeedData::ROWS as [$name, $exportedAt, $user, $locationName]) {
+            foreach ($this->getSeedData() as [$name, $exportedAt, $user, $locationName]) {
                 $this->entityManager->persist(
                     new ExportHistory(
                         $name,
@@ -70,5 +69,17 @@ final class SeedExportHistoryCommand extends Command
         }
 
         return Command::SUCCESS;
+    }
+
+    private function getSeedData(): array
+    {
+        return [
+            ['inventory', '2024-12-10 08:15:00', 'system', 'Tychy'],
+            ['orders', '2024-12-12 14:05:00', 'admin', 'Katowice'],
+            ['clients', '2024-12-14 09:30:00', 'reporter', 'Łódź'],
+            ['returns', '2024-12-15 16:45:00', 'system', 'Warszawa'],
+            ['payments', '2024-12-18 07:20:00', 'analyst', 'Kraków'],
+            ['inventory', '2024-12-14 21:30:00', 'reporter', 'Łódź'],
+        ];
     }
 }

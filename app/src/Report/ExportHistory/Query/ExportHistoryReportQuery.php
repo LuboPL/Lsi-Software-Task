@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace LsiSoftwareTask\Report\ExportHistory\Query;
 
-use LsiSoftwareTask\Report\ExportHistory\Criteria\ExportHistoryCriteria;
-use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryFilterDTO;
+use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryCriteria;
+use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryFilter;
 use LsiSoftwareTask\Report\ExportHistory\Repository\ExportHistoryReadRepositoryInterface;
 
 final readonly class ExportHistoryReportQuery implements ExportHistoryReportQueryInterface
@@ -15,7 +15,7 @@ final readonly class ExportHistoryReportQuery implements ExportHistoryReportQuer
     ) {
     }
 
-    public function fetch(ExportHistoryFilterDTO $filter): array
+    public function fetch(ExportHistoryFilter $filter): array
     {
         $criteria = ExportHistoryCriteria::fromFilter($filter);
 

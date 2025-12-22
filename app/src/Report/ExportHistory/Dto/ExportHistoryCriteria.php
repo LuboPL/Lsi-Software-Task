@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace LsiSoftwareTask\Report\ExportHistory\Criteria;
+namespace LsiSoftwareTask\Report\ExportHistory\Dto;
 
 use DateTimeImmutable;
-use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryFilterDTO;
 
 final readonly class ExportHistoryCriteria
 {
@@ -16,7 +15,7 @@ final readonly class ExportHistoryCriteria
     ) {
     }
 
-    public static function fromFilter(ExportHistoryFilterDTO $dto): self
+    public static function fromFilter(ExportHistoryFilter $dto): self
     {
         return new self(
             $dto->locationName ? trim($dto->locationName) : null,

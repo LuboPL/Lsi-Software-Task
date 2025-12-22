@@ -6,7 +6,7 @@ namespace LsiSoftwareTask\Report\ExportHistory\Dto;
 
 use DateTimeImmutable;
 
-final class ExportHistoryFilterDTO
+final class ExportHistoryFilter
 {
     public ?string $locationName = null;
     public ?DateTimeImmutable $dateFrom = null;

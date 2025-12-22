@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace LsiSoftwareTask\Report\ExportHistory\Query;
 
-use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryFilterDTO;
+use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryFilter;
+use LsiSoftwareTask\Report\ExportHistory\Entity\ExportHistory;
 
 interface ExportHistoryReportQueryInterface
 {
-    public function fetch(ExportHistoryFilterDTO $filter): array;
+    /**
+     * @return array<int, ExportHistory>
+     */
+    public function fetch(ExportHistoryFilter $filter): array;
 }

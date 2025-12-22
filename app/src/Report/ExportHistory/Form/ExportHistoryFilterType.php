@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LsiSoftwareTask\Report\ExportHistory\Form;
 
-use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryFilterDTO;
+use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryFilter;
 use LsiSoftwareTask\Report\ExportHistory\Provider\LocationProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -22,11 +22,9 @@ final class ExportHistoryFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $locations = $this->locationProvider->getLocations();
-
         $builder
             ->add('locationName', ChoiceType::class, [
                 'required' => false,
-                'placeholder' => 'all_locations',
                 'choices' => array_combine($locations, $locations),
                 'choice_translation_domain' => false,
             ])
@@ -45,7 +43,7 @@ final class ExportHistoryFilterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => ExportHistoryFilterDTO::class,
+            'data_class' => ExportHistoryFilter::class,
             'csrf_protection' => false,
             'method' => 'GET',
         ]);
