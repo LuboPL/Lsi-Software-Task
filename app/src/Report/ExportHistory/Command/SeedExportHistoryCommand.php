@@ -7,6 +7,7 @@ namespace LsiSoftwareTask\Report\ExportHistory\Command;
 use DateTimeImmutable;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
+use InvalidArgumentException;
 use LsiSoftwareTask\Report\ExportHistory\Entity\ExportHistory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -49,7 +50,7 @@ final class SeedExportHistoryCommand extends Command
                 $this->entityManager->persist(
                     new ExportHistory(
                         $name,
-                        DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $exportedAt),
+                        $this->createDateTimeImmutable($exportedAt),
                         $user,
                         $locationName
                     )
@@ -84,5 +85,16 @@ final class SeedExportHistoryCommand extends Command
             ['payments', '2024-12-18 07:20:00', 'analyst', 'Kraków'],
             ['inventory', '2024-12-14 21:30:00', 'reporter', 'Łódź'],
         ];
+    }
+
+    private function createDateTimeImmutable(string $value): DateTimeImmutable
+    {
+        $dateTime = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $value);
+
+        if ($dateTime === false) {
+            throw new InvalidArgumentException(sprintf('Invalid seed date "%s".', $value));
+        }
+
+        return $dateTime;
     }
 }
