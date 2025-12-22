@@ -36,6 +36,7 @@ make init
 - `make migrate` - uruchamia migracje
 - `make seed` - ładuje przykładowe dane
 - `make init` - migracje + seed
+- `make phpstan` - uruchamia statyczną analizę kodu
 - `make wait-db` - wewnętrzny target oczekujący na gotową bazę
 
 ## Konfiguracja bazy

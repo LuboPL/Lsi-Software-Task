@@ -1,6 +1,6 @@
 SHELL := /bin/sh
 
-.PHONY: up down reset wait-db migrate seed init
+.PHONY: up down reset wait-db migrate seed init phpstan
 
 up:
 	docker compose up -d --build
@@ -21,3 +21,6 @@ seed: wait-db
 	docker compose exec -T php bin/console app:seed-export-history
 
 init: migrate seed
+
+phpstan:
+	docker compose exec -T php composer phpstan

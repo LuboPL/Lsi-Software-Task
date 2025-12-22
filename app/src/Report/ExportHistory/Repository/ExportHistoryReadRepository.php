@@ -9,6 +9,9 @@ use Doctrine\Persistence\ManagerRegistry;
 use LsiSoftwareTask\Report\ExportHistory\Dto\ExportHistoryCriteria;
 use LsiSoftwareTask\Report\ExportHistory\Entity\ExportHistory;
 
+/**
+ * @extends ServiceEntityRepository<ExportHistory>
+ */
 final class ExportHistoryReadRepository extends ServiceEntityRepository implements ExportHistoryReadRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)

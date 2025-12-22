@@ -7,6 +7,10 @@ RUN composer install --no-interaction --no-progress --no-scripts
 
 FROM php:8.3-fpm
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends unzip \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN docker-php-ext-install pdo pdo_mysql
 
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer

@@ -71,6 +71,9 @@ final class SeedExportHistoryCommand extends Command
         return Command::SUCCESS;
     }
 
+    /**
+     * @return array<int, array{string, string, string, string}>
+     */
     private function getSeedData(): array
     {
         return [
