@@ -6,9 +6,12 @@ namespace LsiSoftwareTask\Report\ExportHistory\Criteria;
 
 use DateTimeImmutable;
 
-final class ExportHistoryCriteria
+final readonly class ExportHistoryCriteria
 {
-    public ?string $locationName = null;
-    public ?DateTimeImmutable $exportFrom = null;
-    public ?DateTimeImmutable $exportTo = null;
+    public function __construct(
+        public ?string $locationName,
+        public ?DateTimeImmutable $exportFrom,
+        public ?DateTimeImmutable $exportTo,
+    ) {
+    }
 }

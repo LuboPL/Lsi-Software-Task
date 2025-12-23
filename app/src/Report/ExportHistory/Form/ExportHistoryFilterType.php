@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace LsiSoftwareTask\Report\ExportHistory\Form;
 
-use LsiSoftwareTask\Report\ExportHistory\Criteria\ExportHistoryCriteria;
 use LsiSoftwareTask\Report\ExportHistory\Form\Transformer\EndOfDayTransformer;
 use LsiSoftwareTask\Report\ExportHistory\Provider\LocationProviderInterface;
 use Symfony\Component\Form\AbstractType;
@@ -47,8 +46,8 @@ final class ExportHistoryFilterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => ExportHistoryCriteria::class,
-            'data' => new ExportHistoryCriteria(),
+            'data_class' => ExportHistoryFilter::class,
+            'data' => new ExportHistoryFilter(),
             'csrf_protection' => false,
             'method' => 'GET',
         ]);

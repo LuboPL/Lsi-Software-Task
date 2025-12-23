@@ -24,7 +24,7 @@ final class EndOfDayTransformer implements DataTransformerInterface
             return null;
         }
 
-        if (false === $value instanceof DateTimeInterface) {
+        if (!$value instanceof DateTimeInterface) {
             return null;
         }
 
