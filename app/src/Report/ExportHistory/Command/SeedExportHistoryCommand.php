@@ -78,12 +78,12 @@ final class SeedExportHistoryCommand extends Command
     private function getSeedData(): array
     {
         return [
-            ['inventory', '2024-12-10 08:15:00', 'system', 'Tychy'],
-            ['orders', '2024-12-12 14:05:00', 'admin', 'Katowice'],
-            ['clients', '2024-12-14 09:30:00', 'reporter', 'Łódź'],
-            ['returns', '2024-12-15 16:45:00', 'system', 'Warszawa'],
-            ['payments', '2024-12-18 07:20:00', 'analyst', 'Kraków'],
-            ['inventory', '2024-12-14 21:30:00', 'reporter', 'Łódź'],
+            ['inventory', '2025-12-10 08:15:00', 'system', 'Tychy'],
+            ['orders', '2025-12-12 14:05:00', 'admin', 'Katowice'],
+            ['clients', '2025-12-14 09:30:00', 'reporter', 'Łódź'],
+            ['returns', '2025-12-15 16:45:00', 'system', 'Warszawa'],
+            ['payments', '2025-12-18 07:20:00', 'analyst', 'Kraków'],
+            ['inventory', '2025-12-14 21:30:00', 'reporter', 'Łódź'],
         ];
     }
 
