@@ -19,6 +19,7 @@ services:
     LsiSoftwareTask\:
         resource: '../src/'
 
+    # Explicit interface aliases for readability and easy swapping of implementations (ports/adapters).
     LsiSoftwareTask\Report\ExportHistory\Repository\ExportHistoryReadRepositoryInterface: '@LsiSoftwareTask\Report\ExportHistory\Repository\ExportHistoryReadRepository'
     LsiSoftwareTask\Report\ExportHistory\Provider\LocationProviderInterface: '@LsiSoftwareTask\Report\ExportHistory\Provider\LocationProvider'
     LsiSoftwareTask\Report\ExportHistory\Query\ExportHistoryReportQueryInterface: '@LsiSoftwareTask\Report\ExportHistory\Query\ExportHistoryReportQuery'

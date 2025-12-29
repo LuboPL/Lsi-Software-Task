@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LsiSoftwareTask\Report\ExportHistory\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\Persistence\ManagerRegistry;
 use LsiSoftwareTask\Report\ExportHistory\Criteria\ExportHistoryCriteria;
 use LsiSoftwareTask\Report\ExportHistory\Entity\ExportHistory;
@@ -26,21 +27,23 @@ final class ExportHistoryReadRepository extends ServiceEntityRepository implemen
         $exportTo = $criteria->exportTo;
 
         $qb = $this->createQueryBuilder('e')
-            ->orderBy('e.exportedAt', 'DESC');
+            ->orderBy('e.exportedAt', 'DESC')
+            ->setMaxResults($criteria->limit)
+            ->setFirstResult($criteria->offset);
 
         if ($locationName) {
             $qb->andWhere('e.locationName = :locationName')
-                ->setParameter('locationName', $locationName);
+                ->setParameter('locationName', $locationName, Types::STRING);
         }
 
         if ($exportFrom !== null) {
             $qb->andWhere('e.exportedAt >= :exportedFrom')
-                ->setParameter('exportedFrom', $exportFrom);
+                ->setParameter('exportedFrom', $exportFrom, Types::DATETIME_IMMUTABLE);
         }
 
         if ($exportTo !== null) {
             $qb->andWhere('e.exportedAt <= :exportedTo')
-                ->setParameter('exportedTo', $exportTo);
+                ->setParameter('exportedTo', $exportTo, Types::DATETIME_IMMUTABLE);
         }
 
         return $qb->getQuery()->getResult();

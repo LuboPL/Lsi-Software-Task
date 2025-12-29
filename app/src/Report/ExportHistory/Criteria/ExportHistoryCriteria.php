@@ -12,6 +12,8 @@ final readonly class ExportHistoryCriteria
         public ?string $locationName,
         public ?DateTimeImmutable $exportFrom,
         public ?DateTimeImmutable $exportTo,
+        public ?int $limit = null,
+        public ?int $offset = null,
     ) {
     }
 }
