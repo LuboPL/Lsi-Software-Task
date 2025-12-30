@@ -51,7 +51,7 @@ make tests
 
 ## Założenia i kompromisy
 
-- Brak paginacji: w produkcji dodałbym limit + offset.
+- Paginacja nie jest wystawiona w UI; repozytorium wspiera opcjonalne `limit`/`offset` jako przygotowanie.
 - Relacje: w produkcji dodałbym klucze obce do tabel `user` i `location`.
 - Snapshot: `exported_by_username` i `location_name` przechowują stan z momentu eksportu.
 - Normalizacja końca dnia jest w formularzu, bo zakres zadania nie obejmuje np API i wejście jest bez godziny.
